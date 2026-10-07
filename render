@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "json"
+require "erb"
+
+version = ENV.fetch("CPUBEAT_VERSION")
+puts "version = #{version}"
+
+asset = `gh release view \
+    v#{version} \
+    --repo iliabylich/cpubeat \
+    --json assets \
+    --jq '.assets[] | select(.name | contains(".dmg"))'`.strip
+asset = JSON.parse(asset)
+
+_, sha256 = asset.fetch("digest").split(":")
+
+puts "sha256 = #{sha256}"
+
+erb = File.read("Casks/cpubeat.erb")
+rendered = ERB.new(erb).result(binding)
+
+File.write("Casks/cpubeat.rb", rendered)
