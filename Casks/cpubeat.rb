@@ -1,6 +1,6 @@
 cask "cpubeat" do
-  version "1.0.0"
-  sha256 "6dd1d49fd2132f9bb48d1b5d8a72f9cf1555b3a7b6ae615508837bda3863ab3c"
+  version "1.0.1"
+  sha256 "530c911c42b8738c78a8c00a58adae30aec0f694d1d465b59bb89f0d0629fea1"
 
   url "https://github.com/iliabylich/cpubeat/releases/download/v#{version}/cpubeat_#{version}_arm64.dmg"
   name "cpubeat"
